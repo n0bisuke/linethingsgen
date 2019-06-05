@@ -1,39 +1,63 @@
 <template>
-  <div id="app" class="container">
-    <section>
 
-      <b-field label="accesstoken">
-        <b-input v-model="accesstoken"></b-input>
-      </b-field>
-      
-      <b-field label="liffId">
-        <b-input v-model="liffId"></b-input>
+  <section class="section">
+    <h1 class="title is-3 has-text-grey">
+      "1.トライアルプロダクトを作成します。
+      <b-icon icon="pencil" size="is-large"/>"
+    </h1>
+    
+    <section class="hero is-light">
+      <div class="hero-body">
+
+      <!--LIFF App選択-->
+      <b-field label="LIFFアプリを選択 (※LIFFアプリの作成はMessaging APIの管理画面から行ってください。)" >
+         <b-tooltip :label="(liffId === '')?'LIFFアプリを選択してください。': `${liffId}を選択中`" position="is-right" always>
+          <b-select placeholder="Select a character" v-model="liffId" rounded>   
+            <option
+              v-for="liffapp in liffApps.apps"
+              :key="liffapp.liffId"
+              :value="liffapp.liffId">
+              {{liffapp.description}}({{liffapp.liffId}})
+              </option>
+          </b-select>
+        </b-tooltip>
       </b-field>
 
-      <b-field label="Name">
-        <b-input v-model="name"></b-input>
+      <b-field label="LIFF ID">
+        <b-input :placeholder="liffId" disabled></b-input>
       </b-field>
 
-      <b-field label="ProductId">
-        <b-input v-model="productId"></b-input>
+      <!--トライアルプロダクト名-->
+      <b-field label="トライアルプロダクトの名前">
+        <b-input v-model="productName"></b-input>
       </b-field>
 
-      <b-field label="serviceUuid">
-        <b-input v-model="serviceUuid"></b-input>
-      </b-field>
-      
-      <b-button type="is-success" @click="getProducs">確認</b-button>
+      <!--作成ボタン-->
       <b-button type="is-success" @click="createProducs">作成</b-button>
-      <b-button type="is-success" @click="setScenarioset">シナリオセット登録</b-button>
+  
+    </div>
+  </section>
 
-    </section>
+  <!--結果表示-->
+  <section class="hero is-success" v-if="createdProduct.id">
+    <div class="hero-body">
+      作成成功
+      <div class="container">
+        <h2 class="title">
+          トライアルプロダクト名: {{createdProduct.name}}
+        </h2>
+        <h2 class="subtitle">
+          プロダクトID: {{createdProduct.id}}
+        </h2>
+      </div>
+    </div>
+  </section>
 
-</div>
-            
+</section>
+
 </template>
 
 <script>
-import Card from '~/components/Card'
 import axios from 'axios'
 
 export default {
@@ -42,15 +66,12 @@ export default {
     return {
       accesstoken: '',
       liffId: '',
-      name: '',
+      productName: '',
       baseUrl: 'https://ev2-prod-node-red-fe7bce69-69d.herokuapp.com',
       productId: '',
-      serviceUuid: ''
+      liffApps: [],
+      createdProduct: {}
     }
-  },
-
-  components: {
-    Card
   },
 
   methods: {
@@ -67,14 +88,15 @@ export default {
       };
     },
 
-    //
-    getProducs: async function(){
+    //LIFFアプリ一覧
+    getLiffApps: async function(){
       console.log('click!');
-      const path = `https://api.line.me/things/v1/trial/products`
+      const path = `https://api.line.me/liff/v1/apps`
       const config = this._createConf(path,'GET');
       try {
         const res = await axios.request(config);
         console.log(res.data);
+        this.liffApps = res.data;
       } catch (error) {
         console.log(error)
       }
@@ -85,47 +107,33 @@ export default {
       console.log('click!');
       const path = `https://api.line.me/things/v1/trial/products`
       const data = {
-        name: this.name,
+        name: this.productName,
         liffId: this.liffId
       };
       const config = this._createConf(path,'POST',data);
       try {
         const res = await axios.request(config);
         console.log(res.data);
-      } catch (error) {
-        console.log(error)
-      }
-    },
-
-    //シナリオセット作成
-    setScenarioset: async function() {
-      console.log('click!');
-      const path = `https://api.line.me/things/v1/products/${this.productId}/scenario-set`;
-      const data = {
-        autoClose: false,
-        suppressionInterval: 0,
-        scenarios: [{
-          trigger: {
-            type: "BLE_NOTIFICATION",
-            serviceUuid: this.serviceUuid,
-            characteristicUuid: "62FBD229-6EDD-4D1A-B554-5C4E1BB29169"
-          },
-          actions: []
-        }],
-        productId: `${this.productId}`
-      };
-      const config = this._createConf(path,'PUT',data);
-      try {
-        const res = await axios.request(config);
-        console.log(res.data);
-        console.log(JSON.stringify(res.data));
+        this.createdProduct = res.data
       } catch (error) {
         console.log(error)
       }
     }
-
   },
 
-  mounted: async () =>{}
+  //アクセストークン
+  mounted: function() {
+    if (localStorage.accesstoken) {
+      this.accesstoken = localStorage.accesstoken;
+    }
+
+    this.getLiffApps();
+  },
+  watch: {
+    accesstoken(newAccesstoken) {
+      localStorage.accesstoken = newAccesstoken;
+    }
+  }
 }
 </script>
+

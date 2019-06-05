@@ -15,6 +15,7 @@
             alt="Buefy"
             height="28"
           >
+          <span>LINE Thingsのアレ</span>
         </a>
 
         <div class="navbar-burger">
@@ -58,9 +59,24 @@ export default {
     return {
       items: [
         {
-          title: 'Home',
-          icon: 'home',
+          title: 'Index',
+          icon: 'pencil',
           to: { name: 'index' }
+        },
+        {
+          title: 'Scenario',
+          icon: 'video-input-component',
+          to: { name: 'scenarioset' }
+        },
+        // {
+        //   title: 'Home',
+        //   icon: 'home',
+        //   to: { name: 'home' }
+        // },
+        {
+          title: 'Setting',
+          icon: 'settings',
+          to: { name: 'setting' }
         },
         {
           title: 'Inspire',
