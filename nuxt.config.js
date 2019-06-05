@@ -69,8 +69,12 @@ export default {
     }
   },
 
+  //GitHub Pages向け設定
   generate: {
     dir: "docs"
+  },
+  router: {
+    base: '/linethingsgen/'
   }
   
 }
