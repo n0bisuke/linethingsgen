@@ -41,6 +41,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // '@nuxtjs/proxy',
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
     '@nuxtjs/pwa',
@@ -50,6 +51,11 @@ export default {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: true,
+  },
+  proxy: {
+    '/connpass': 'https://connpass.com/api/v1/event/?keyword=python',
+    '/thingsproducts': `https://api.line.me/things/v1/trial/products`
   },
 
   /*

@@ -1,47 +1,63 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
+  <div id="app" class="container">
+    <section>
 
-      <card
-        title="Free"
-        icon="github-circle"
-      >
-        Open source on <a href="https://github.com/buefy/buefy"> GitHub</a>
-      </card>
+      <b-field label="accesstoken">
+        <b-input v-model="accesstoken"></b-input>
+      </b-field>
+      
+      <b-field label="liffID">
+        <b-input v-model="liffId"></b-input>
+      </b-field>
+      
+      <b-button type="is-success" @click="getProducs">Success</b-button>
 
-      <card
-        title="Responsive"
-        icon="cellphone-link"
-      >
-        <b class="has-text-grey">Every</b> component is responsive
-      </card>
+    </section>
 
-      <card
-        title="Modern"
-        icon="alert-decagram"
-      >
-        Built with <a href="https://vuejs.org/">Vue.js</a> and <a href="http://bulma.io/">Bulma</a>
-      </card>
-
-      <card
-        title="Lightweight"
-        icon="arrange-bring-to-front"
-      >
-        No other internal dependency
-      </card>
-
-    </div>
-  </section>
+</div>
+            
 </template>
 
 <script>
 import Card from '~/components/Card'
+import axios from 'axios'
 
 export default {
   name: 'HomePage',
+  data () {
+    return {
+      accesstoken: '',
+      liffId: ''
+    }
+  },
 
   components: {
     Card
+  },
+
+  methods: {
+    getProducs: async function(){
+      console.log('click!')
+      const config = {
+        baseURL: '/',
+        url: '/thingsproducts',
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${this.accesstoken}`,
+        }
+      };
+      
+      try {
+        const res = await axios.request(config);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+
+  mounted: async () =>{
+
   }
 }
 </script>
