@@ -28,6 +28,9 @@
           <p>裏側ではenebularを使ってプロキシサーバーを立てています。</p>
           <p>Nuxt.js+Buefyでサクッと作りました。</p>
           <p>あとはGitHub Pagesでホスティングしてます。</p>
+
+          <br>
+          <p>2019/6/6</p>
         </div>
       </div>
     </section>
