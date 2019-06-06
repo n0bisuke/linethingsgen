@@ -1,7 +1,7 @@
 {
   "name": "linethingsgen",
   "version": "1.0.0",
-  "description": "My fantastic Nuxt.js project",
+  "description": "LINE ThingsのScenario-Setの登録をWebでやれるやつです。  ",
   "author": "のびすけ",
   "private": true,
   "scripts": {
