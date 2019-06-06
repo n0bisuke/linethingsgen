@@ -8,14 +8,14 @@
       <div class="navbar-brand">
         <a
           class="navbar-item"
-          href="/"
+          href="/linethingsgen"
         >
           <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
+            src="~assets/linethings.png"
+            alt="LINE Things LOGO"
+            height="100px"
           >
-          <span>LINE Thingsのアレ</span>
+          <span>LINE Things Scenario-Set Generator（永遠のβ版）</span>
         </a>
 
         <div class="navbar-burger">
@@ -59,12 +59,12 @@ export default {
     return {
       items: [
         {
-          title: 'Index',
+          title: 'Create Product',
           icon: 'pencil',
           to: { name: 'index' }
         },
         {
-          title: 'Scenario',
+          title: 'Create Scenario',
           icon: 'video-input-component',
           to: { name: 'scenarioset' }
         },
@@ -79,8 +79,8 @@ export default {
           to: { name: 'setting' }
         },
         {
-          title: 'Inspire',
-          icon: 'lightbulb',
+          title: 'About',
+          icon: 'information',
           to: { name: 'inspire' }
         }
       ]

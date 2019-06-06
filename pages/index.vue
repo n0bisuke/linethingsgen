@@ -8,9 +8,8 @@
     
     <section class="hero is-light">
       <div class="hero-body">
-
       <!--LIFF App選択-->
-      <b-field label="LIFFアプリを選択 (※LIFFアプリの作成はMessaging APIの管理画面から行ってください。)" >
+      <b-field label="LIFFアプリを選択 - LIFFアプリの作成はMessaging APIの管理画面(※)で行ってください。" >
          <b-tooltip :label="(liffId === '')?'LIFFアプリを選択してください。': `${liffId}を選択中`" position="is-right" always>
           <b-select placeholder="Select a character" v-model="liffId" rounded>   
             <option
@@ -22,7 +21,7 @@
           </b-select>
         </b-tooltip>
       </b-field>
-
+      
       <b-field label="LIFF ID">
         <b-input :placeholder="liffId" disabled></b-input>
       </b-field>
@@ -34,9 +33,10 @@
 
       <!--作成ボタン-->
       <b-button type="is-success" @click="createProducs">作成</b-button>
-  
     </div>
   </section>
+  
+  <a href="https://pierre3.github.io/add-liff-web/" target="_blank">※LIFFアプリは小林さん(@pierre3)作のツールからも作成できます。</a>
 
   <!--結果表示-->
   <section class="hero is-success" v-if="createdProduct.id">
@@ -125,6 +125,12 @@ export default {
   mounted: function() {
     if (localStorage.accesstoken) {
       this.accesstoken = localStorage.accesstoken;
+    }else{
+      const mes = `最初に<a href="setting">Setting</a>でアクセストークンを設定して下さい。`
+      this.$snackbar.open({
+        duration: 5000,
+        message: mes
+      })
     }
 
     this.getLiffApps();
