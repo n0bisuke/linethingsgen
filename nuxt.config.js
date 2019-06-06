@@ -15,7 +15,7 @@ export default {
       { hid: 'og:image', property:'og:image', content: 'https://n0bisuke.github.io/linethingsgen/ogp.png'},
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/linethings.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/linethingsgen/linethings.ico' }
     ]
   },
 
