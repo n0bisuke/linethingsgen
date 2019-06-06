@@ -1,5 +1,7 @@
 import pkg from './package'
 
+const title = `LINE Things Scenario-Set Generator (β)`;
+
 export default {
   mode: 'universal',
 
@@ -7,12 +9,23 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'LINE Things Scenario-Set Generator (β)',
+    title: title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
+      { property:'og:locale', content:'ja_JP'},
+
+      { hid: 'og:title', property:'og:title', content: 'LINE Things Scenario-Set Generator (β)'},
+      { hid: 'og:type', property:'og:type', content: 'website'},
       { hid: 'og:image', property:'og:image', content: 'https://n0bisuke.github.io/linethingsgen/ogp.png'},
+
+      { name:'twitter:card', content:'summary_large_image'},
+      { name:'twitter:site', content:'@n0bisuke'},
+      { name:'twitter:creator', content:'@n0bisuke'},
+      { hid: 'twitter:title', name:'twitter:title', content: title},
+      { hid: 'twitter:image', name:'twitter:image', content: `https://n0bisuke.github.io/linethingsgen/ogp.png`},
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/linethingsgen/favicon.ico' }
