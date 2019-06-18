@@ -139,7 +139,7 @@ export default {
   data () {
     return {
       accesstoken: '',
-      baseUrl: 'https://ev2-prod-node-red-fe7bce69-69d.herokuapp.com',
+      baseUrl: process.env.baseUrl,
       productId: '',
       serviceUuid: '',
       products: [],
@@ -217,8 +217,8 @@ export default {
           trigger: {
             type: this.triggerType,
             serviceUuid: this.serviceUuid,
-            characteristicUuid: this.generateUuid()
-            // characteristicUuid: "62FBD229-6EDD-4D1A-B554-5C4E1BB29169"
+            // characteristicUuid: this.generateUuid()
+            characteristicUuid: "62FBD229-6EDD-4D1A-B554-5C4E1BB29169"
           },
           actions: this.actionsBody
         }],

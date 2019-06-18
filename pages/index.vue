@@ -67,7 +67,7 @@ export default {
       accesstoken: '',
       liffId: '',
       productName: '',
-      baseUrl: 'https://ev2-prod-node-red-fe7bce69-69d.herokuapp.com',
+      baseUrl: process.env.baseUrl,
       productId: '',
       liffApps: [],
       createdProduct: {}
