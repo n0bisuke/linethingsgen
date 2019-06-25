@@ -4,8 +4,11 @@ const title = `LINE Things Scenario-Set Generator (β)`;
 
 export default {
   mode: 'universal',
+
+  //https://linethingsgen-by-enebular.herokuapp.com/
+  //https://ev2-prod-node-red-db67222f-c45.herokuapp.com/
   env: {
-      baseUrl: process.env.BASE_URL || 'https://ev2-prod-node-red-db67222f-c45.herokuapp.com'
+      baseUrl: process.env.BASE_URL || 'https://linethingsgen-by-enebular.herokuapp.com/'
   },
   /*
   ** Headers of the page
