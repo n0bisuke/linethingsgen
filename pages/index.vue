@@ -49,6 +49,9 @@
         <h2 class="subtitle">
           プロダクトID: {{createdProduct.id}}
         </h2>
+        <h2 class="ServiceUuid">
+          サービスUUID: {{createdProduct.serviceUuid}}
+        </h2>
       </div>
     </div>
   </section>

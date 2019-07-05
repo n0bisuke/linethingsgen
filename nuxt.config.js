@@ -8,7 +8,7 @@ export default {
   //https://linethingsgen-by-enebular.herokuapp.com/
   //https://ev2-prod-node-red-db67222f-c45.herokuapp.com/
   env: {
-      baseUrl: process.env.BASE_URL || 'https://linethingsgen-by-enebular.herokuapp.com/'
+    baseUrl: process.env.BASE_URL || 'https://linethingsgen-by-enebular.herokuapp.com/'
   },
   /*
   ** Headers of the page
